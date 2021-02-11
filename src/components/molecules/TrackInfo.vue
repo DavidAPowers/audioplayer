@@ -1,6 +1,6 @@
 <template>
   <h4>TrackInfo</h4>
-  <Textbox />
+  <Textbox text="Cyborg K: The Prophecy" />
 </template>
 
 <script>

@@ -2,13 +2,14 @@
   <img alt="Vue logo" src="./assets/logo.png">
 
   <h2>Atoms</h2>
-  <Textbox />
-  <Pause />
-  <Play />
+  <Textbox text="01. Cyborg K: The Prophecy" />
+  <PlayPause v-bind:playing="true" />
+  <PlayPause v-bind:playing="false" />
+
   <Rewind />
   <Stop />
   <FastFwd />
-  <ListItem />
+  <ListItem text="01. Cyborg K: The Prophecy"/>
 
   <h2>Molecules</h2>
   <TrackInfo />
@@ -19,8 +20,7 @@
 
 <script>
 import Textbox from './components/atoms/Textbox.vue'
-import Pause from './components/atoms/Pause.vue'
-import Play from './components/atoms/Play.vue'
+import PlayPause from './components/atoms/PlayPause.vue'
 import Rewind from './components/atoms/Rewind.vue'
 import Stop from './components/atoms/Stop.vue'
 import FastFwd from './components/atoms/FastFwd.vue'
@@ -34,8 +34,7 @@ export default {
   name: 'App',
   components: {
     Textbox,
-    Pause,
-    Play,
+    PlayPause,
     Rewind,
     Stop,
     FastFwd,

@@ -1,15 +1,11 @@
 <template>
-  <li>List Item</li>
+  <li>{{text}}</li>
 </template>
 
 <script>
 
 export default {
-  data() {
-    return {
-      
-    }
-  }
+  props: ['text']
 }
 </script>
 

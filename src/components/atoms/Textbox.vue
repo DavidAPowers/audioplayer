@@ -1,15 +1,11 @@
 <template>
-  <p>This is your track info</p>
+  <p>{{text}}</p>
 </template>
 
 <script>
 
 export default {
-  data() {
-    return {
-      
-    }
-  }
+  props: ['text']
 }
 </script>
 
