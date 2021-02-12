@@ -1,5 +1,4 @@
 <template>
-  <h4>Controls</h4>
   <div>
     <PlayPause v-bind:playing="playing" v-on:pause="handleClick('pause')" v-on:play="handleClick('play')"  />
     <Rewind v-on:rewind="handleClick('rewind')" />
@@ -34,7 +33,10 @@ export default {
 </script>
 
 <style>
-  svg {
-    width: 60px;
+  svg.audioBtn {
+    width: 32px;
+  }
+  svg.audioBtn:hover {
+    stroke: #DA4567;
   }
 </style>

@@ -1,11 +1,13 @@
 <template>
-  <li>{{text}}</li>
+  <li class='tracklist-item' :class="{ currentTrack: isCurrent }">
+    {{tracknum}}. {{track.artist}} - <b>{{track.title}}</b>
+  </li>
 </template>
 
 <script>
 
 export default {
-  props: ['text']
+  props: ['track','tracknum','isCurrent']
 }
 </script>
 

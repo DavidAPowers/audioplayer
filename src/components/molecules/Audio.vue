@@ -1,5 +1,5 @@
 <template>
-  <audio ref="htmlAudio" id="htmlAudio" >
+  <audio controls ref="htmlAudio" id="htmlAudio" >
     <source :src="source" type="audio/ogg">
   </audio>
 </template>
@@ -19,6 +19,9 @@ export default {
         this.$refs.htmlAudio.pause();        
         this.$refs.htmlAudio.currentTime = 0;      
       }
+    },
+    source() {
+        this.$refs.htmlAudio.load();           
     }
   },
 

@@ -1,11 +1,11 @@
 <template>
-  <p>{{text}}</p>
+  <p>{{tracknum}}. {{track.artist}} - <b>{{track.title}}</b></p>
 </template>
 
 <script>
 
 export default {
-  props: ['text']
+  props: ['track','tracknum']
 }
 </script>
 

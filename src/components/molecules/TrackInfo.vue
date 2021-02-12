@@ -1,12 +1,12 @@
 <template>
-  <h4>TrackInfo</h4>
-  <Textbox text="Cyborg K: The Prophecy" />
+  <Textbox :track="track" :tracknum="tracknum" />
 </template>
 
 <script>
 import Textbox from '../atoms/Textbox.vue'
 
 export default {
+  props: ['track','tracknum'],
   data() {
     return {
       

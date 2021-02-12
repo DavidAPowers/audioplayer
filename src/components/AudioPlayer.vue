@@ -1,9 +1,11 @@
 <template>
-  <h2>Audio Player</h2>
-  <TrackInfo />
-  <Controls v-on:audioclick="handleClick" v-bind:playing="playing" />
-  <Playlist />
-  <Audio source="https://www.davidapowers.com/audio/07__Fallout%20Blues.mp3" v-bind:state="audioState" />
+  <div class="audio-player">
+      <TrackInfo :track="track" :tracknum="tracknum" />
+      <Controls v-on:audioclick="handleClick" v-bind:playing="playing" />
+      <Playlist class="playlist" :tracklist="tracklist" :current="currentIndex" />
+      <Audio :source="track.url" v-bind:state="audioState" />
+
+  </div>
 
 </template>
 
@@ -20,9 +22,23 @@ export default {
     return {
       // Initialized to zero to begin
       audioState: "stop",
-      playing: false
+      playing: false,
+      tracklist: [
+        {url: "https://www.davidapowers.com/audio/01__TheProphecy.mp3", artist: "David A Powers", title: "The Prophecy"},
+        {url: "https://www.davidapowers.com/audio/07__Fallout%20Blues.mp3", artist: "David A Powers", title: "Fallout Blues"},
+        {url: "https://www.davidapowers.com/audio/08__ChildrenOfTheRuins.mp3", artist: "David A Powers", title: "Children of the Ruins"},
+      ],
+      currentIndex: 0
     }
   },  
+  computed: {
+    track() {
+      return this.tracklist[this.currentIndex];
+    },
+    tracknum() {
+      return this.currentIndex + 1;
+    }
+  },
   components: {
     TrackInfo,
     Controls,
@@ -46,10 +62,15 @@ export default {
           this.playing = false;
           break;
         case "rewind":
-          alert('rewind');
+          if(this.currentIndex===0) {this.currentIndex=this.tracklist.length-1}
+          else {this.currentIndex = this.currentIndex - 1; }
+          this.audioState = "stop";
+          this.playing = false;
           break;
         case "ffwd":
-          alert('ffwd');
+          this.currentIndex = (this.currentIndex+1)%this.tracklist.length;
+          this.audioState = "stop";
+          this.playing = false;
           break;
       }
     }
@@ -58,5 +79,10 @@ export default {
 </script>
 
 <style>
+div.audio-player {
+  max-width: 300px;
+  margin: 0 auto;
+  font-size: 10px;
+}
 
 </style>
