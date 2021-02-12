@@ -1,5 +1,12 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
+  <AudioPlayer />
+
+  
+  <h2>Molecules</h2>
+  <TrackInfo />
+  <Controls />
+  <Playlist />
+
 
   <h2>Atoms</h2>
   <Textbox text="01. Cyborg K: The Prophecy" />
@@ -11,10 +18,7 @@
   <FastFwd />
   <ListItem text="01. Cyborg K: The Prophecy"/>
 
-  <h2>Molecules</h2>
-  <TrackInfo />
-  <Controls />
-  <Playlist />
+
 
 </template>
 
@@ -30,6 +34,8 @@ import TrackInfo from './components/molecules/TrackInfo.vue'
 import Controls from './components/molecules/Controls.vue'
 import Playlist from './components/molecules/Playlist.vue'
 
+import AudioPlayer from './components/AudioPlayer.vue'
+
 export default {
   name: 'App',
   components: {
@@ -41,7 +47,8 @@ export default {
     ListItem,
     TrackInfo,
     Controls,
-    Playlist
+    Playlist,
+    AudioPlayer
   }
 }
 </script>

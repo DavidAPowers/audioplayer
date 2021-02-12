@@ -1,6 +1,6 @@
 <template>
-  <Play v-if="playing" />
-  <Pause v-else />  
+  <Pause v-if="playing" v-on:pause="handlePause" />
+  <Play v-else v-on:play="handlePlay" />  
 
 </template>
 
@@ -12,6 +12,14 @@ export default {
   components: {
     Play,
     Pause
+  },
+  methods: {
+    handlePause() {
+      this.$emit('pause')
+    },
+    handlePlay() {
+      this.$emit('play')
+    },
   }
 }
 </script>

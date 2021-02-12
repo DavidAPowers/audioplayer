@@ -1,9 +1,11 @@
 <template>
   <h4>Controls</h4>
-  <PlayPause v-bind:playing="true" />
-  <Rewind />
-  <Stop />
-  <FastFwd />  
+  <div>
+    <PlayPause v-bind:playing="playing" v-on:pause="handleClick('pause')" v-on:play="handleClick('play')"  />
+    <Rewind v-on:rewind="handleClick('rewind')" />
+    <Stop v-on:stop="handleClick('stop')" />
+    <FastFwd v-on:ffwd="handleClick('ffwd')" />  
+  </div>
 </template>
 
 <script>
@@ -13,16 +15,20 @@ import Stop from '../atoms/Stop.vue'
 import FastFwd from '../atoms/FastFwd.vue'
 
 export default {
-  data() {
-    return {
-      
-    }
-  },
+  props: ['playing'],
+  emits: ['audioclick'],
+
   components: {
     PlayPause,
     Rewind,
     Stop,
     FastFwd
+  },
+  methods: {
+    handleClick(event) {
+      this.$emit("audioclick", event)
+    }
+    
   }  
 }
 </script>
