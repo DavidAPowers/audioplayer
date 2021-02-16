@@ -1,5 +1,5 @@
 <template>
-  <p>{{tracknum}}. {{track.artist}} - <b>{{track.title}}</b></p>
+  <span>{{tracknum}}. {{track.artist}} - <b>{{track.title}}</b></span>
 </template>
 
 <script>

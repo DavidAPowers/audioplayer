@@ -1,10 +1,17 @@
 <template>
-  <svg @click="handleClick" class="audioBtn" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.933 12.8a1 1 0 000-1.6L6.6 7.2A1 1 0 005 8v8a1 1 0 001.6.8l5.333-4zM19.933 12.8a1 1 0 000-1.6l-5.333-4A1 1 0 0013 8v8a1 1 0 001.6.8l5.333-4z"></path></svg>
+  <svg @click="handleClick" class="audioBtn" :class="{ inactive: ffwdInactive }" 
+    width="48" height="25" viewBox="0 0 96 50" fill="black" xmlns="http://www.w3.org/2000/svg">
+    <path d="M87 25L49.5 3.34937V46.6506L87 25Z" />
+    <path d="M50 25L12.5 3.34937V46.6506L50 25Z" />
+    <rect width="9" height="46" transform="matrix(-1 0 0 1 96 2)" />
+  </svg>
+
 </template>
 
 <script>
 
 export default {
+  props: ['ffwdInactive'],
   methods: {
     handleClick() {
       this.$emit('ffwd')
