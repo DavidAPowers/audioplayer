@@ -10,7 +10,3 @@ export default {
   props: ['track','tracknum','isCurrent']
 }
 </script>
-
-<style>
-
-</style>

@@ -11,12 +11,14 @@
 <script>
 
 export default {
-  methods: {
-    handleClick() {
-      this.$emit('play')
+  setup(props, { emit })  {
+    const handleClick = () => {
+      emit('play')
     }
-  }
-
+    return {
+      handleClick // functions returned behave the same as methods
+    }
+  }  
 }
 </script>
 

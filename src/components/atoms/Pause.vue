@@ -11,17 +11,13 @@
 <script>
 
 export default {
-  data() {
-    return {
-      
+  setup(props, { emit })  {
+    const handleClick = () => {
+      emit('pause')
     }
-  },
-  methods: {
-    handleClick() {
-      this.$emit('pause')
+    return {
+      handleClick // functions returned behave the same as methods
     }
   }
 }
 </script>
-<style>
-</style>

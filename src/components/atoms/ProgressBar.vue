@@ -14,28 +14,28 @@
 </template>
 
 <script>
-
+import { ref, watch, toRefs } from 'vue'
 export default {
-  data() {
-    return {
-      currentPos:0,
+  props: ['position','duration','onSeek'],
+  emits: ['seek'],
+  setup(props, { emit })  {
+    const { position } = toRefs(props)
+    const currentPos = ref(0)
+    const handleChange = (e) => {
+      emit('seek',e.target.value);
     }
-  }, 
-  props: ['position','duration'],
-  methods: {
-    handleChange(e) {
-      this.$emit('seek',e.target.value)
+    const updatePosition = (p) => {
+      currentPos.value = p;
+    }
+    watch(position, (newPosition) => {
+      updatePosition(newPosition);
+    });
+    return {
+      currentPos,
+      updatePosition,
+      handleChange
     }
   },
-  
-  watch: {
-    /* Throttle position changes so that slider events can get out*/
-    position(newValue) {
-      if(Math.abs(newValue - this.currentPos) > 0.99) {
-        this.currentPos = newValue;
-      }
-    }
-  }  
   
 }
 </script>

@@ -5,11 +5,14 @@
 <script>
 
 export default {
-  methods: {
-    handleClick() {
-      this.$emit('stop')
+  setup(props, { emit })  {
+    const handleClick = () => {
+      emit('stop')
     }
-  }
+    return {
+      handleClick // functions returned behave the same as methods
+    }
+  } 
 }
 </script>
 

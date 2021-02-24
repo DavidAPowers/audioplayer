@@ -12,14 +12,12 @@
 
 export default {
   props: ['rewindInactive'],
-  data() {
-    return {
-      
+  setup(props, { emit })  {
+    const handleClick = () => {
+      emit('rewind')
     }
-  },
-  methods: {
-    handleClick() {
-      this.$emit('rewind')
+    return {
+      handleClick // functions returned behave the same as methods
     }
   }  
 }

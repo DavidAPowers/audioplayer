@@ -13,14 +13,17 @@ export default {
     Play,
     Pause
   },
-  methods: {
-    handlePause() {
-      this.$emit('pause')
-    },
-    handlePlay() {
-      this.$emit('play')
-    },
-  }
+  setup(props, { emit })  {
+    const handlePause = () => {
+      emit('pause')
+    }
+    const handlePlay = () => {
+      emit('play')
+    }
+    return {
+      handlePause, handlePlay
+    }
+  }    
 }
 </script>
 

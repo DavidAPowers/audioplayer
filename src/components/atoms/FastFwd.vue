@@ -12,14 +12,13 @@
 
 export default {
   props: ['ffwdInactive'],
-  methods: {
-    handleClick() {
-      this.$emit('ffwd')
+  setup(props, { emit })  {
+    const handleClick = () => {
+      emit('ffwd')
     }
-  }
+    return {
+      handleClick // functions returned behave the same as methods
+    }
+  }  
 }
 </script>
-
-<style>
-
-</style>
