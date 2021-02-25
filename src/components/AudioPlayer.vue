@@ -26,6 +26,7 @@ export default {
     const tracklist = await axios.get(this.tracklistUrl)
     if (tracklist.data) {
       this.tracklist = tracklist.data;
+      console.log(this.tracklist);
     }
   },  
   data() {
