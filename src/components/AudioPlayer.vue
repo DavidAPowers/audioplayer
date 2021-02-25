@@ -20,7 +20,10 @@ import Audio from './molecules/Audio.vue'
 export default {
   name: 'AudioPlayer',
   async created() {
-    const tracklist = await axios.get(`https://www.davidapowers.com/api/playlist`)
+    if(window.location.href.indexOf("localhost")==7) {
+      this.tracklistUrl = `https://dap2.test/api/playlist`;
+    }
+    const tracklist = await axios.get(this.tracklistUrl)
     if (tracklist.data) {
       this.tracklist = tracklist.data;
     }
@@ -34,7 +37,8 @@ export default {
       currentIndex: 0,
       currentTime: 0,
       seekTime: 0,
-      duration: 0
+      duration: 0,
+      tracklistUrl: `https://www.davidapowers.com/api/playlist`
     }
   },
   computed: {
@@ -73,6 +77,10 @@ export default {
       this.currentTime = 0;
       if(this.currentIndex < this.tracklist.length-1) {
         this.currentIndex = this.currentIndex+1;
+      } else {
+        this.currentIndex = 0;
+        this.audioState = "stop";
+        this.playing = false;
       }
     },
     prettyTime(rawtime) {
