@@ -3,10 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "dev": "vite"
+    "dev": "vite",
+    "test": "vitest"
   },
   "dependencies": {
     "axios": "^1.12",
@@ -14,10 +12,14 @@
     "vue-material-design-icons": "^5.3"
   },
   "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vue/test-utils": "^2.4.6",
     "eslint": "^9.35",
     "eslint-plugin-vue": "^10.4",
-    "@vitejs/plugin-vue": "^6.0.1",
-    "vite": "^7.1.6"
+    "generate-template-files": "^3.2.1",
+    "happy-dom": "^18.0.1",
+    "vite": "^7.1.6",
+    "vitest": "^3.2.4"
   },
   "eslintConfig": {
     "root": true,
@@ -28,8 +30,7 @@
       "plugin:vue/vue3-essential",
       "eslint:recommended"
     ],
-    "parserOptions": {
-    },
+    "parserOptions": {},
     "rules": {}
   },
   "browserslist": [
