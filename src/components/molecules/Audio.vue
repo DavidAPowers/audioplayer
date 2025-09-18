@@ -1,11 +1,6 @@
 <script setup>
 import { useTemplateRef, watch } from 'vue'
-const props = defineProps({
-  source: String,
-  state: String,
-  position: Number,
-  seekTime: Number,
-})
+const props = defineProps(['source','state','position','seekTime'])
 const emit = defineEmits(['currentTime','trackLength','trackEnd'])
 useTemplateRef('htmlAudio')
 

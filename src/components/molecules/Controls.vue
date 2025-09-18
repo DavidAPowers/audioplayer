@@ -1,3 +1,22 @@
+<script setup>
+//import { useTemplateRef, watch } from 'vue'
+import PlayPause from '../atoms/PlayPause.vue'
+import Rewind from '../atoms/Rewind.vue'
+import FastFwd from '../atoms/FastFwd.vue'
+import ProgressBar from '../atoms/ProgressBar.vue'
+const props = defineProps({
+  playing: Boolean,
+  rewindInactive: Boolean,
+  ffwdInactive: Boolean,
+  position: Number,
+  duration: Number,
+})
+const emit = defineEmits(['seek','audioclick'])
+const handleSeek = (position) => {
+  emit('seek', position);
+}
+</script>
+
 <template>
   <div class="audioControls">
     <ProgressBar :position="position" :duration="duration" @seek="handleSeek" />
@@ -8,37 +27,6 @@
     <FastFwd @ffwd="$emit('audioclick', 'ffwd')" :ffwdInactive="ffwdInactive"/>  
   </div>
 </template>
-
-<script>
-import PlayPause from '../atoms/PlayPause.vue'
-import Rewind from '../atoms/Rewind.vue'
-import FastFwd from '../atoms/FastFwd.vue'
-import ProgressBar from '../atoms/ProgressBar.vue'
-
-/*
-const emit = defineEmits<{
-  change: [id: number] // named tuple syntax
-  update: [value: string]
-}>()
-*/
-
-export default {
-  props: ['playing','rewindInactive','ffwdInactive','position','duration'],
-  emits: ['audioclick'],
-
-  components: {
-    PlayPause,
-    Rewind,
-    FastFwd,
-    ProgressBar,
-  },
-  methods: {
-    handleSeek(payload) {
-      this.$emit("seek", payload)
-    }
-  }  
-}
-</script>
 
 <style>
   div.audioControls {
