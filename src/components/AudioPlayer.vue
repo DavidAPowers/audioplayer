@@ -21,7 +21,7 @@ export default {
   name: 'AudioPlayer',
   async created() {
     if(window.location.href.indexOf("localhost")==7) {
-      this.tracklistUrl = `https://dap2.test/api/playlist`;
+      this.tracklistUrl = `https://davidapowers.com/api/playlist`;
     }
     const tracklist = await axios.get(this.tracklistUrl)
     if (tracklist.data) {
