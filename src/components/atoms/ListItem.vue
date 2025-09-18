@@ -1,12 +1,16 @@
+<script setup>
+const props = defineProps({
+  isCurrent: Boolean,
+  tracknum: Number,
+  title: String,
+  artist: String
+})
+</script>
+
 <template>
   <li class='tracklist-item' :class="{ currentTrack: isCurrent }">
-    {{tracknum}}. {{track.artist}} - <b>{{track.title}}</b>
+    {{tracknum}}. {{artist}} - <b>{{title}}</b>
   </li>
 </template>
 
-<script>
 
-export default {
-  props: ['track','tracknum','isCurrent']
-}
-</script>

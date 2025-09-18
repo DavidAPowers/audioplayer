@@ -1,22 +1,19 @@
+<script setup>
+import ListItem from '../atoms/ListItem.vue'
+const props = defineProps({
+  tracklist: Array,
+  current: Number
+})
+</script>
+
 <template>
   <div class="playlist-heading">Playlist</div>
   <ul class="tracklist">
     <template v-for="(track, itemObjKey) in tracklist" :key="track.title">
-      <ListItem :track="track" :tracknum="itemObjKey+1" :isCurrent="current==itemObjKey" />
+      <ListItem :artist="track.artist" :title="track.title" :tracknum="itemObjKey+1" :isCurrent="current==itemObjKey" />
     </template>
   </ul>
 </template>
-
-<script>
-import ListItem from '../atoms/ListItem.vue'
-
-export default {
-  props: ['tracklist','current'],
-  components: {
-    ListItem
-  }  
-}
-</script>
 
 <style>
 ul.tracklist {

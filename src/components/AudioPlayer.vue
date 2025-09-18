@@ -1,7 +1,7 @@
 <template>
   <div v-if="!tracklist" class="audio-player">Loading Playlist...</div>
   <div v-else class="audio-player">
-      <TrackInfo :track="track" :tracknum="tracknum" :position="prettyPosition" :duration="prettyDuration" />
+      <TrackInfo :title="track.title" :artist="track.artist" :tracknum="tracknum" :position="prettyPosition" :duration="prettyDuration" />
       <Controls @audioclick="handleClick" @seek="handleSeek" :playing="playing" :rewindInactive="rewindInactive" 
         :ffwdInactive="ffwdInactive" :position="currentTime" :duration="duration" />
       <Playlist class="playlist" :tracklist="tracklist" :current="currentIndex" />

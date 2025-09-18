@@ -1,31 +1,15 @@
-<template>
-  <Pause v-if="playing" v-on:pause="handlePause" />
-  <Play v-else v-on:play="handlePlay" />  
-
-</template>
-
-<script>
+<script setup>
 import Pause from './Pause.vue'
 import Play from './Play.vue'
-export default {
-  props: ['playing'],
-  components: {
-    Play,
-    Pause
-  },
-  setup(props, { emit })  {
-    const handlePause = () => {
-      emit('pause')
-    }
-    const handlePlay = () => {
-      emit('play')
-    }
-    return {
-      handlePause, handlePlay
-    }
-  }    
-}
+const props = defineProps({
+  playing: Boolean,
+})
 </script>
+<template>
+  <Pause v-if="playing" @click="$emit('pause')" />
+  <Play v-else @click="$emit('play')" />  
+
+</template>
 
 <style>
 

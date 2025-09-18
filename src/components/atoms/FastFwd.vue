@@ -1,5 +1,11 @@
+<script setup>
+const props = defineProps({
+  ffwdInactive: Boolean,
+})
+</script>
+
 <template>
-  <svg @click="handleClick" class="audioBtn" :class="{ inactive: ffwdInactive }" 
+  <svg @click="$emit('ffwd')" class="audioBtn ffwd" :class="{ inactive: ffwdInactive }" 
     width="48" height="25" viewBox="0 0 96 50" fill="black" xmlns="http://www.w3.org/2000/svg">
     <path d="M87 25L49.5 3.34937V46.6506L87 25Z" />
     <path d="M50 25L12.5 3.34937V46.6506L50 25Z" />
@@ -7,18 +13,3 @@
   </svg>
 
 </template>
-
-<script>
-
-export default {
-  props: ['ffwdInactive'],
-  setup(props, { emit })  {
-    const handleClick = () => {
-      emit('ffwd')
-    }
-    return {
-      handleClick // functions returned behave the same as methods
-    }
-  }  
-}
-</script>

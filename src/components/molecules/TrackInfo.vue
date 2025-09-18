@@ -1,29 +1,22 @@
+<script setup>
+import Textbox from '../atoms/Textbox.vue'
+const props = defineProps({
+  title: String,
+  artist: String,
+  tracknum: Number,
+  position: String,
+  duration: String
+})
+</script>
 <template>
   <div class="currentTrackInfo">
-    <Textbox :title="track.artist" :artist="track.title" :tracknum="tracknum" />
+    <Textbox :title="artist" :artist="title" :tracknum="tracknum" />
     &nbsp;
     &nbsp;
     &nbsp;
     <span>{{position}} / {{duration}}</span>
   </div>
 </template>
-
-<script>
-import Textbox from '../atoms/Textbox.vue'
-
-export default {
-  props: ['track','tracknum','position','duration'],
-  data() {
-    return {
-      
-    }
-  },
-  components: {
-    Textbox
-  }
-
-}
-</script>
 
 <style>
 div.currentTrackInfo {

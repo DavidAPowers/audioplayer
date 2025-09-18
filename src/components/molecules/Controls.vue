@@ -1,21 +1,26 @@
 <template>
   <div class="audioControls">
     <ProgressBar :position="position" :duration="duration" @seek="handleSeek" />
-    <Rewind v-on:rewind="handleClick('rewind')" :rewindInactive="rewindInactive" />
+    <Rewind @rewind="$emit('audioclick', 'rewind')" :rewindInactive="rewindInactive" />
     &nbsp; 
-    <PlayPause v-bind:playing="playing" v-on:pause="handleClick('pause')" v-on:play="handleClick('play')"  />   
+    <PlayPause v-bind:playing="playing" @pause="$emit('audioclick', 'pause')" @play="$emit('audioclick', 'play')"  />   
     &nbsp; 
-    <!--<Stop v-on:stop="handleClick('stop')" />-->
-    <FastFwd v-on:ffwd="handleClick('ffwd')" :ffwdInactive="ffwdInactive"/>  
+    <FastFwd @ffwd="$emit('audioclick', 'ffwd')" :ffwdInactive="ffwdInactive"/>  
   </div>
 </template>
 
 <script>
 import PlayPause from '../atoms/PlayPause.vue'
 import Rewind from '../atoms/Rewind.vue'
-//import Stop from '../atoms/Stop.vue'
 import FastFwd from '../atoms/FastFwd.vue'
 import ProgressBar from '../atoms/ProgressBar.vue'
+
+/*
+const emit = defineEmits<{
+  change: [id: number] // named tuple syntax
+  update: [value: string]
+}>()
+*/
 
 export default {
   props: ['playing','rewindInactive','ffwdInactive','position','duration'],
@@ -24,14 +29,10 @@ export default {
   components: {
     PlayPause,
     Rewind,
-    //Stop,
     FastFwd,
     ProgressBar,
   },
   methods: {
-    handleClick(event) {
-      this.$emit("audioclick", event)
-    },
     handleSeek(payload) {
       this.$emit("seek", payload)
     }

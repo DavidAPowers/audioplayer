@@ -1,3 +1,22 @@
+<script setup>
+import { ref, watch } from 'vue'
+const props = defineProps({
+  position: Number,
+  duration: Number
+})
+const emit = defineEmits(['seek'])
+const currentPos = ref(0)
+const updatePosition = (p) => {
+  currentPos.value = p;
+}
+const handleChange = (e) => {
+  emit('seek',e.target.value);
+}
+watch(() => props.position, (newVal, oldVal) => {
+  updatePosition(newVal)
+});
+</script>
+
 <template>
   <div class="progressContainer">
     <input
@@ -12,34 +31,3 @@
     />
   </div>
 </template>
-
-<script>
-import { ref, watch, toRefs } from 'vue'
-export default {
-  props: ['position','duration','onSeek'],
-  emits: ['seek'],
-  setup(props, { emit })  {
-    const { position } = toRefs(props)
-    const currentPos = ref(0)
-    const handleChange = (e) => {
-      emit('seek',e.target.value);
-    }
-    const updatePosition = (p) => {
-      currentPos.value = p;
-    }
-    watch(position, (newPosition) => {
-      updatePosition(newPosition);
-    });
-    return {
-      currentPos,
-      updatePosition,
-      handleChange
-    }
-  },
-  
-}
-</script>
-
-<style>
-
-</style>
