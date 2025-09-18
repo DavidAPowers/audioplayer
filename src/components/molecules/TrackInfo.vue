@@ -1,6 +1,6 @@
 <template>
   <div class="currentTrackInfo">
-    <Textbox :track="track" :tracknum="tracknum" />
+    <Textbox :title="track.artist" :artist="track.title" :tracknum="tracknum" />
     &nbsp;
     &nbsp;
     &nbsp;

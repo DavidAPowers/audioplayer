@@ -4,7 +4,8 @@ import { mount } from '@vue/test-utils'
 test('renders component', () => {
   const wrapper = mount(Textbox, {
     props: {
-      track: {artist:'Goofballz', title:'Hello world'},
+      artist:'Goofballz', 
+      title:'Hello world',
       tracknum: 4
     }
   })
