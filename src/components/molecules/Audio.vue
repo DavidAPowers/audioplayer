@@ -1,55 +1,54 @@
+<script setup>
+import { useTemplateRef, watch } from 'vue'
+const props = defineProps({
+  source: String,
+  state: String,
+  position: Number,
+  seekTime: Number,
+})
+const emit = defineEmits(['currentTime','trackLength','trackEnd'])
+useTemplateRef('htmlAudio')
+
+watch(() => props.position, (newTime, oldTime) => {
+  if(Math.abs(newTime - htmlAudio.currentTime) > 0.1) {
+    htmlAudio.currentTime = newTime
+  }
+})
+watch(() => props.state, (newValue, oldValue) => {
+  if(newValue==="play") {
+    htmlAudio.play()
+  } else if(newValue==="pause") {
+    htmlAudio.pause()
+  } else if(newValue==="stop") {
+    htmlAudio.pause()      
+    htmlAudio.currentTime = 0
+  }
+})
+watch(() => props.source, (newValue, oldValue) => {
+  htmlAudio.load()
+  if(props.state==="play") {
+    htmlAudio.play()
+  }    
+})
+watch(() => props.seekTime, (newTime, oldTime) => {
+  htmlAudio.currentTime = newTime
+})
+
+const updateCurrentTime = () => {
+  emit('currentTime',htmlAudio.currentTime)
+}
+const finishedLoading = () => {
+  console.log(htmlAudio.duration)
+  emit('trackLength',htmlAudio.duration)
+}
+const trackEnded = () => {
+  emit('trackEnd')
+}
+</script>
+
 <template>
   <audio ref="htmlAudio" id="htmlAudio" @timeupdate="updateCurrentTime" @loadedmetadata="finishedLoading" @ended="trackEnded">
     <source :src="source" type="audio/mp3">
   </audio>
 </template>
 
-<script>
-
-export default {
-  props: ['source','state','position','seekTime'],
-  watch: {
-    position(newTime) {
-      /* Throttle the emission of position change to improve performance */
-      if(Math.abs(newTime - this.$refs.htmlAudio.currentTime) > 0.1) {
-        this.$refs.htmlAudio.currentTime = newTime;
-      }
-    },
-    state(newValue) {
-      if(newValue==="play") {
-        this.$refs.htmlAudio.play();
-      } else if(newValue==="pause") {
-        this.$refs.htmlAudio.pause();
-      } else if(newValue==="stop") {
-        this.$refs.htmlAudio.pause();        
-        this.$refs.htmlAudio.currentTime = 0;      
-      }
-    },
-    source() {
-      this.$refs.htmlAudio.load();   
-      if(this.state==="play") {
-        this.$refs.htmlAudio.play();
-      }
-    },
-    seekTime(newTime) {
-      this.$refs.htmlAudio.currentTime = newTime;
-    }
-  },
-  methods: {
-    updateCurrentTime() {
-      this.$emit('currentTime',this.$refs.htmlAudio.currentTime)
-    },
-    finishedLoading() {
-      this.$emit('trackLength',this.$refs.htmlAudio.duration)
-    },
-    trackEnded() {
-      this.$emit('trackEnd')
-    }
-  }
-
-}
-</script>
-
-<style>
-
-</style>

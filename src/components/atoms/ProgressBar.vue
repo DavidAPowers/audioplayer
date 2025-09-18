@@ -14,7 +14,7 @@ const handleChange = (e) => {
 }
 watch(() => props.position, (newVal, oldVal) => {
   updatePosition(newVal)
-});
+})
 </script>
 
 <template>
